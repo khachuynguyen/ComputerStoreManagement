@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div th:insert="fragments/head::headerlink"></div>
+    <title>Trang chủ máy tính</title>
+</head>
+<body>
+<div class="container-fluid" style="background-color: lightgray; ">
+    <div th:insert="fragments/navbar::navbar"></div>
+    <!-- Button trigger modal -->
+
+    <div style="background-color: white" class="d-flex justify-content-around flex-wrap">
+        <th:block th:each="item : ${list}">
+            <div class="card" style="width: 18rem;margin: 10px">
+                <img style="height: 60%" th:src="@{${'/image/' +item.avatar}}"
+                     class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 th:text="${item.name}" class="card-title"></h5>
+                    <h6 th:text=" @{ ${item.price} +' K' }" class="card-text"></h6>
+                    <a th:href="@{'/productDetail/?id=' + ${item.id}}" class="btn btn-primary">Xem chi tiết</a>
+                </div>
+            </div>
+        </th:block>
+
+    </div>
+
+</div>
+</body>
+</html>

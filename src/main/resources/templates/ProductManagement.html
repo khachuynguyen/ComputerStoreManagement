@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div th:insert="fragments/head::headerlink"></div>
+    <title>Quản lí sản phẩm</title>
+</head>
+<body>
+<div class="container-fluid" style="background-color: lightgray">
+    <div th:insert="fragments/navbar::navbar"></div>
+    <button style="margin: 10px" type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+        Thêm sản phẩm
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm sản phẩm.</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form enctype="multipart/form-data" th:action="@{/addProduct}" th:object="${product}" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <input th:field="${product.name}" type="text" class="form-control" placeholder="Tên máy" aria-label="product_name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input th:field="${product.connector}" type="text" class="form-control" placeholder="Cổng kết nối"
+                                       aria-label="connector">
+                            </div>
+                            <div class="col">
+                                <input th:field="${product.cpu}" type="text" class="form-control" placeholder="Cpu" aria-label="cpu">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input th:field="${product.design}" type="text" class="form-control" placeholder="Thiết kế" aria-label="design">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input th:field="${product.graphicCard}" type="text" class="form-control" placeholder="Card màn hình"
+                                       aria-label="graphic_card">
+                            </div>
+                            <div class="col">
+                                <input th:field="${product.price}" type="text" class="form-control" placeholder="Giá sản phẩm" aria-label="price">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input th:field="${product.ram}" type="text" class="form-control" placeholder="Ram" aria-label="ram">
+                            </div>
+                            <div class="col">
+                                <input th:field="${product.releaseTime}" type="text" class="form-control" placeholder="Thời điểm ra mắt"
+                                       aria-label="release_time">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input th:field="${product.screen}" type="text" class="form-control" placeholder="Màn hình" aria-label="screen">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input th:field="${product.hardDrive}" type="text" class="form-control" placeholder="Ổ cứng" aria-label="hardDrive">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="formFile" class="form-label">Avatar</label>
+                            <input name="image" class="form-control" type="file" id="formFile" accept="image">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên máy</th>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col">Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="product,state : ${list}">
+            <tr>
+                <th scope="row" th:text="${state.index}"></th>
+                <td th:text="${product.name}"></td>
+                <td>
+                    <img style="width: 300px;height: 180px" th:src="@{${'/image/' + product.avatar}}">
+                </td>
+                <td>
+                        <a  style="margin-top:20px " th:href="@{'/edit/?id=' + ${product.id}}" class="btn btn-warning">Sửa</a>
+                        <form th:action="@{/delete}" th:object="${product}" method="post">
+                            <input type="hidden" name="id" th:value="${product.id}" >
+                            <button style="margin-top:20px " type="submit" class="btn btn-danger">Xóa</button>
+                        </form>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

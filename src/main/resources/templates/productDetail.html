@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div th:insert="fragments/head::headerlink"></div>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container-fluid" style="background-color: lightgray">
+        <div th:insert="fragments/navbar::navbar"></div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Thông tin</th>
+                <th scope="col">Nội dung</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">0</th>
+                <td>Hình ảnh</td>
+                <td>
+                    <img style="width: 300px;height: 180px" th:src="@{${'/image/' + product.avatar}}">
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td>Tên sản phẩm</td>
+                <td th:text="${product.name}"></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Giá sản phẩm</td>
+                <td th:text="${product.price}"></td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Chip xử lí</td>
+                <td th:text="${product.cpu}"></td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Màn hình</td>
+                <td th:text="${product.screen}"></td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td>Card màn hình</td>
+                <td th:text="${product.graphicCard}"></td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td>Ổ cứng</td>
+                <td th:text="${product.hardDrive}"></td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td>Thời điểm ra mắt</td>
+                <td th:text="${product.releaseTime}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

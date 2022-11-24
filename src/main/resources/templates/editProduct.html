@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <div th:insert="fragments/head.html::headerlink"></div>
+    <title>EditProduct</title>
+</head>
+<body>
+<div class="container-fluid" style="background-color: lightgray; ">
+    <div th:insert="fragments/navbar::navbar"></div>
+      <form enctype="multipart/form-data" th:action="@{/edit}" th:object="${editProduct}" method="post">
+          <input type="hidden" name="id" th:field="${editProduct.id}">
+          <div class="form-group">
+              <label >Tên sản phẩm</label>
+              <input th:field="${editProduct.name}" type="text" class="form-control"  placeholder="Product Name">
+          </div>
+          <div class="form-group">
+              <label>Giá sản phảm</label>
+              <input th:field="${editProduct.price}" type="text" class="form-control"  placeholder="Giá sản phẩm">
+          </div>
+          <div class="form-group">
+              <label>Màn hình</label>
+              <input th:field="${editProduct.screen}" type="text" class="form-control"  placeholder="Giá sản phẩm">
+          </div>
+          <div class="form-group">
+              <label>Ổ cứng</label>
+              <input th:field="${editProduct.hardDrive}" type="text" class="form-control"  placeholder="Giá sản phẩm">
+          </div>
+          <div class="form-group">
+              <label>Card màn hình</label>
+              <input name="graphicCard" th:field="${editProduct.graphicCard}" type="text" class="form-control"  placeholder="Giá sản phẩm">
+          </div>
+          <div class="form-group">
+              <label>Bộ vi xử lí</label>
+              <input th:field="${editProduct.cpu}" type="text" class="form-control"  placeholder="Giá sản phẩm">
+          </div>
+          <div class="form-group">
+              <label>Ram</label>
+              <input th:field="${editProduct.ram}" type="text" class="form-control"  placeholder="Giá sản phẩm">
+          </div>
+          <div class="form-group">
+              <label>Thiết kế</label>
+              <input th:field="${editProduct.design}" type="text" class="form-control"  placeholder="Giá sản phẩm">
+          </div>
+          <div class="form-group">
+              <label>Thời điểm ra mắt</label>
+              <input th:field="${editProduct.releaseTime}" type="text" class="form-control"  placeholder="Giá sản phẩm">
+          </div>
+          <div class="form-group">
+              <label>Cổng kết nối</label>
+              <input th:field="${editProduct.connector}" type="text" class="form-control"  placeholder="Giá sản phẩm">
+          </div>
+          <div class="form-group">
+              <label>Avatar</label>
+              <img style="height: 100px;width: 200px;" th:src="@{'/image/'+${editProduct.avatar}}">
+              <input name="file" class="form-control" type="file" id="formFile" accept="image">
+          </div>
+          <button type="submit" class="btn btn-primary">Lưu</button>
+      </form>
+</div>
+</body>
+</html>
